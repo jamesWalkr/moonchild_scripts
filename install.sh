@@ -44,3 +44,13 @@ if ! command -S yay &>/dev/null; then
 fi
 
 echo "yay has been successfully installed. Continuing with the script."
+
+# Clone into below repositories into home directory
+git clone https://github.com/jamesWalkr/moonchild_scripts ~/moonchild_scripts
+# git clone https://github.com/jamesWalkr/.dotfiles ~/moonchild_scripts/.dotfiles
+
+clear
+
+# ~/moonchild_scripts/install_scripts/setup.sh
+
+echo "Done..."
