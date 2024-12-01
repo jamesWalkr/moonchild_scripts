@@ -11,4 +11,14 @@ You can choose to install below window managers
 
 **User can select between vanilla(non-customized) and customized**
 
-# Installation
+## Installation
+
+```
+wget https://github.com/jamesWalkr/moonchild_scripts/blob/main/install.sh
+
+chmod +x install.sh
+
+./install.sh
+
+rm install.sh
+```
