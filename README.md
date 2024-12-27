@@ -5,7 +5,7 @@
 These scripts are intended to be used after a fresh install of Arch Linux.  
 You can choose to install below window managers
 
-- i3
+- i3 (WIP)
 - sway (to be implemented)
 - Hyprland (to be implemented)
 
@@ -14,7 +14,7 @@ You can choose to install below window managers
 ## Installation
 
 ```
-wget https://github.com/jamesWalkr/moonchild_scripts/blob/main/install.sh
+wget https://raw.githubusercontent.com/drewgrif/bookworm-scripts/refs/heads/main/install.sh
 
 chmod +x install.sh
 
