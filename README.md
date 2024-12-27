@@ -14,7 +14,7 @@ You can choose to install below window managers
 ## Installation
 
 ```
-wget https://raw.githubusercontent.com/drewgrif/bookworm-scripts/refs/heads/main/install.sh
+wget https://raw.githubusercontent.com/jamesWalkr/moonchild_scripts/refs/heads/main/install.sh
 
 chmod +x install.sh
 
