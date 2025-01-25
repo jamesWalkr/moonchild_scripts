@@ -2,23 +2,25 @@
 
 ## Window Managers
 
-These scripts are intended to be used after a fresh install of Arch Linux.  
+These scripts are are set of install scripts.
+Starting with arch install then scripts to install various window mangers.
+
 You can choose to install below window managers
 
 - i3 (WIP)
 - sway (to be implemented)
 - Hyprland (to be implemented)
 
-**User can select between vanilla(non-customized) and customized**
+User can select between vanilla(non-customized) and customized
 
 ## Installation
 
-```
-wget https://raw.githubusercontent.com/jamesWalkr/moonchild_scripts/refs/heads/main/install.sh
+```bash
+wget https://raw.githubusercontent.com/jamesWalkr/moonchild_scripts/refs/heads/main/archinstaller.sh
 
-chmod +x install.sh
+chmod +x archinstaller.sh
 
-./install.sh
+./archinstaller.sh
 
-rm install.sh
+rm archinstaller.sh
 ```
