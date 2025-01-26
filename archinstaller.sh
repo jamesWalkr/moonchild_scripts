@@ -65,9 +65,11 @@ echo "-------------------------------------------------"
 
 lsblk -l
 
-echo "-------------------------------------------------"
+echo -e "\n\n"
+
+echo "---------------------------------------------------------------------------------------------------"
 echo "Please choose what disk and block devices you want to use for this install based on above info."
-echo "-------------------------------------------------"
+echo "----------------------------------------------------------------------------------------------------"
 
 echo -e "\nWhat disk would you like to use for this installation? (ie /dev/sda)\n"
 
@@ -81,9 +83,17 @@ echo -e "\nWhat partition would you like to use for the root partiton? (ie /dev/
 
 read rt_partition
 
+echo -e "\n\n"
+
+echo "-------------------------------------------------------------------------"
+echo "Below are disk and partitions that will be used for this install"
+echo "-------------------------------------------------------------------------"
+
 echo -e "\n$install_disk will be used to as disk for arch install.\n"
 echo -e "\n$boot_partiton will be used to for boot partition.\n"
 echo -e "\n$rt_partition will used for root partition.\n"
+
+echo -e "\n\n"
 
 # echo "------------------------------------------------"
 # echo "Formatting Partitions"
