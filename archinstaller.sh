@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # An arch linux install script
-
 # Verify Boot Mode
 echo "-------------------------------------------------"
 echo " checking to make sure you are bboted in UEFI"
@@ -39,7 +38,7 @@ echo -e "\nEnter username to be created:\n"
 
 read usr_name
 
-echo -e "\nEnter new password for $user:\n"
+echo -e "\nEnter new password for $usr_name:\n"
 
 read usr_password
 
@@ -64,13 +63,15 @@ echo "-------------------------------------------------"
 echo "Displaying disk and block device information"
 echo "-------------------------------------------------"
 
-lsblk -f
+lsblk -l
 
 echo "-------------------------------------------------"
 echo "Please choose what disk and block devices you want to use for this install based on above info."
 echo "-------------------------------------------------"
 
 echo -e "\nWhat disk would you like to use for this installation? (ie /dev/sda)\n"
+
+read install_disk
 
 echo -e "\nWhat partition would you like to use for the boot partion? (ie /dev/sda1).\n"
 
@@ -80,8 +81,9 @@ echo -e "\nWhat partition would you like to use for the root partiton? (ie /dev/
 
 read rt_partition
 
-echo "$boot_partiton will be used to for boot partition"
-echo "$rt_partition will used for root partition"
+echo -e "\n$install_disk will be used to as disk for arch install.\n"
+echo -e "\n$boot_partiton will be used to for boot partition.\n"
+echo -e "\n$rt_partition will used for root partition.\n"
 
 # echo "------------------------------------------------"
 # echo "Formatting Partitions"
