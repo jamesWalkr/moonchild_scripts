@@ -16,7 +16,7 @@ User can select between vanilla(non-customized) and customized
 ## Installation
 
 ```bash
-wget https://raw.githubusercontent.com/jamesWalkr/moonchild_scripts/refs/heads/main/archinstaller.sh
+curl -O  https://raw.githubusercontent.com/jamesWalkr/moonchild_scripts/refs/heads/main/archinstaller.sh
 
 chmod +x archinstaller.sh
 
