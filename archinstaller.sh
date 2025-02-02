@@ -113,19 +113,19 @@ sgdisk $install_disk -o
 
 # Create boot partiton of size 512MB and label as efi
 echo -e "\nCreating boot partiton\n"
-sgdisk -n 0:0+512Mib -t 0:ef00 -c 0:efi $install_disk
+sgdisk -n 1::+512Mib -t 1:ef00 -c 1:efi $install_disk
 
 # Create swap paration of size 4G and label as swap
 echo -e "\nCreating swap partition\n"
-sgdisk -n 0:0:+4Gib -t0:8200 -c 0:swap $install_disk
+sgdisk -n 2::+4Gib -t 2:8200 -c 2:swap $install_disk
 
 # create root partiton with remaining space and label as root
 echo -e "\nCreating root partiton\n"
-sgdisk -n 0:0:0 -t 0:8300 -c 0:root $install_disk
+sgdisk -n 3 -t 3:8300 -c 3:root $install_disk
 
 echo -e "\nPartitons have been created.\n"
 
-lsblk -f
+lsblk -f ###02/01/2025 - Script has been tested up to this point###
 
 # format BOOT partiton as FAT32
 echo -e "\nCreating boot partion\n"
@@ -135,6 +135,7 @@ mkfs.FAT -F 32 $boot_partition
 echo -e "\nFormating root partition"
 mkfs.ext4 $root_partiton
 
+# Turn swap on
 echo -e "\nMaking swap partition\n"
 mkswap $swap_partition
 
@@ -148,13 +149,16 @@ echo "--------------------------------------------------"
 echo "Mounting Partitons"
 echo "--------------------------------------------------"
 
+# Mount root partition
 echo -e "\n Mounting root partiton"
 mount $root_partition /mnt
 
+# Mount boot partition
 echo -e "\nMounting boot partition\n"
 mkdir -p /mnt/boot/efi
 mount $boot_partition /mnt/boot/efi
 
+# Turn swap on
 echo -e "\nTurning swap on\n"
 swapon $swap_partition
 
