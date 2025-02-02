@@ -79,7 +79,11 @@ echo -e "\nWhat partition would you like to use for the boot partion? (ie /dev/s
 
 read boot_partiton
 
-echo -e "\nWhat partition would you like to use for the root partiton? (ie /dev/sda2).\n"
+echo -e "\nWhat partition would you like to use for swap? (ie /dev/sda2)\n"
+
+read swap_partition
+
+echo -e "\nWhat partition would you like to use for the root partiton? (ie /dev/sda3).\n"
 
 read rt_partition
 
@@ -89,12 +93,72 @@ echo "-------------------------------------------------------------------------"
 echo "Below are disk and partitions that will be used for this install"
 echo "-------------------------------------------------------------------------"
 
-echo -e "\n$install_disk will be used to as disk for arch install.\n"
-echo -e "\n$boot_partiton will be used to for boot partition.\n"
+echo -e "\n$install_disk will be used as disk for arch install.\n"
+echo -e "\n$boot_partiton will be used for boot partition.\n"
+echo -e "\n$swap_partition will be used for swap partition\n"
 echo -e "\n$rt_partition will used for root partition.\n"
 
 echo -e "\n\n"
 
-# echo "------------------------------------------------"
-# echo "Formatting Partitions"
-# echo "------------------------------------------------"
+echo "------------------------------------------------"
+echo "Formatting Partitions"
+echo "------------------------------------------------"
+
+# wipe file system of the installation destination disk
+echo -e "\nWiping file system\n"
+wipefs --all $install_disk
+
+echo -e "\nCreating GPT partiton table\n"
+sgdisk $install_disk -o
+
+# Create boot partiton of size 512MB and label as efi
+echo -e "\nCreating boot partiton\n"
+sgsdisk -n 0:0+512Mib -t 0:ef00 -c 0:efi $install_disk
+
+# Create swap paration of size 4G and label as swap
+echo -e "\nCreating swap partition\n"
+sgdisk -n 0:0:+4Gib -t0:8200 -c 0:swap $install_disk
+
+# create root partiton with remaining space and label as root
+echo -e "\nCreating root partiton\n"
+sgdisk -n 0:0:0 -t 0:8300 -c 0:root $install_disk
+
+echo -e "\nPartitons have been created.\n"
+
+lsblk -f
+
+# format BOOT partiton as FAT32
+echo -e "\nCreating boot partion\n"
+mkfs.FAT -F 32 $boot_partition
+
+# format ROOT partion as ext4
+echo -e "\nFormating root partition"
+mkfs.ext4 $root_partiton
+
+echo -e "\nMaking swap partition\n"
+mkswap $swap_partition
+
+echo -e "\nPartitions have been formated\n"
+
+lsblk -f
+
+echo -e "\n\n"
+
+echo "--------------------------------------------------"
+echo "Mounting Partitons"
+echo "--------------------------------------------------"
+
+echo -e "\n Mounting root partiton"
+mount $root_partition /mnt
+
+echo -e "\nMounting boot partition\n"
+mkdir -p /mnt/boot/efi
+mount $boot_partition /mnt/boot/efi
+
+echo -e "\nTurning swap on\n"
+swapon $swap_partition
+
+echo -e "\n partitions have been mounted\n"
+lsblk -f
+
+echo -e "\n\n"
