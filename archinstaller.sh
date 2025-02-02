@@ -113,7 +113,7 @@ sgdisk $install_disk -o
 
 # Create boot partiton of size 512MB and label as efi
 echo -e "\nCreating boot partiton\n"
-sgsdisk -n 0:0+512Mib -t 0:ef00 -c 0:efi $install_disk
+sgdisk -n 0:0+512Mib -t 0:ef00 -c 0:efi $install_disk
 
 # Create swap paration of size 4G and label as swap
 echo -e "\nCreating swap partition\n"
